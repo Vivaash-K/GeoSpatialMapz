@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GeoSpatialMapz</title>
+    <link rel="preconnect" href="https://api.mapbox.com" />
+    <link rel="preconnect" href="https://events.mapbox.com" />
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <h1 class="title">GeoSpatialMapz</h1>
+        <p class="subtitle">Interactive geospatial visualization</p>
+      </div>
+    </header>
+
+    <main class="container">
+      <div id="map" class="map"></div>
+      {% if not mapbox_token %}
+      <div class="notice">
+        <strong>Missing Mapbox token.</strong>
+        Set the environment variable <code>MAPBOX_ACCESS_TOKEN</code> and reload.
+      </div>
+      {% endif %}
+    </main>
+
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+    <script>
+      window.MAPBOX_ACCESS_TOKEN = "{{ mapbox_token }}";
+    </script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </body>
+  </html>
+
+
